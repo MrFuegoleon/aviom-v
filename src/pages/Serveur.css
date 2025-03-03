@@ -1,0 +1,404 @@
+/* serveur.css */
+
+/* Container styling */
+.serveur-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+}
+
+/* Header */
+.serveur-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.serveur-header {
+  display: flex;
+  justify-content: center; /* Center the actions container */
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.actions {
+  display: flex;
+  width: 100%;
+  gap: 10px; /* Optional gap between buttons */
+}
+
+.actions > button {
+  flex: 1; /* Each button takes equal space (half the width if there are 2) */
+  padding: 10px 20px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+
+.create-button:hover,
+.action-button:hover,
+.filter-button:hover {
+  background-color: #0056b3;
+}
+
+/* Server Table */
+.serveur-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  margin-bottom: 20px;
+}
+
+.serveur-table th,
+.serveur-table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.serveur-table th {
+  background-color: #f9fafb;
+}
+
+/* Dummy Icon Styles */
+.status-green {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: green;
+  border-radius: 50%;
+}
+
+.backup-icon,
+.os-icon,
+.data-center-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
+
+/* Packs Table */
+.packs-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  background: #fff;
+}
+
+.packs-table th,
+.packs-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.select-button {
+  padding: 5px 10px;
+  background-color: #007bff;
+  border: none;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.select-button:hover {
+  background-color: #0056b3;
+}
+
+/* Register Form */
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.register-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+}
+
+.register-box h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.form-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-column label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-column input {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.register-box input[type="text"],
+.register-box input[type="email"],
+.register-box input[type="tel"],
+.register-box select,
+.register-box textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Form buttons */
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.confirm-button,
+.back-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.confirm-button {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.back-button {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.confirm-button:hover {
+  background-color: #218838;
+}
+
+.back-button:hover {
+  background-color: #c82333;
+}
+
+/* Configuration Form */
+.form-container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.server-name-label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.server-name-label input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.configurations {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.config-option {
+  flex: 1;
+}
+
+.config-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  border: none;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.config-button.active,
+.config-button:hover {
+  background-color: #0056b3;
+}
+
+.services-container {
+  margin-top: 20px;
+}
+
+.config-details {
+  margin-top: 20px;
+}
+
+.config-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.config-table th,
+.config-table td {
+  padding: 15px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.config-table th {
+  background: #f9fafb;
+}
+
+/* Create Buttons in Configuration */
+.create-buttons-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.create-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.create-btn.eco {
+  background-color: #28a745;
+}
+
+.create-btn.duo {
+  background-color: #007bff;
+}
+
+.create-btn.trio {
+  background-color: #fd7e14;
+}
+
+.create-btn.pro {
+  background-color: #6f42c1;
+}
+
+.create-btn:hover {
+  opacity: 0.8;
+}
+
+/* Offer Summary */
+.offer-summary {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.summary-header {
+  padding: 10px;
+  color: #fff;
+  text-align: center;
+}
+
+.summary-content {
+  padding: 20px;
+}
+
+.summary-content p {
+  margin-bottom: 10px;
+}
+
+.summary-content ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.summary-content li {
+  margin-bottom: 5px;
+}
+
+.submit-button {
+  display: block;
+  margin: 20px auto 0;
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+/* Flex Price Section */
+.flex-price-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.order-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.order-button:hover {
+  background-color: #0056b3;
+}
+
+/* Flex Recommendation */
+#flex-recommendation {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #007bff;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+  }
+  .actions {
+    flex-direction: column;
+    gap: 5px;
+  }
+}
