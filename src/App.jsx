@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import LoginForm from "./components/loginForm";
-import Home from "./pages/home";
 import Serveur from "./pages/services.jsx";
 import Dashboard from "./pages/dashboard";
 import Facturation from "./pages/facturation";
@@ -10,10 +9,10 @@ import Support from "./pages/support";
 import Informations from "./pages/informations";
 import ConfirmationPaiement from "./pages/ConfirmationPaiement";
 import OpenMachine from "./pages/Machine";
-import Sidebar from "./components/Sidebar/sidebar.jsx";
 import CreateProject from "./pages/CreateProject.jsx";
 import ProtectedPage from "./components/protectedPage.jsx";
 import "./App.css";
+import Sidebar from "./components/Sidebar/sidebar.jsx";
 
 function App() {
   return (
