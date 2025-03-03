@@ -10,7 +10,7 @@ import Informations from "./pages/informations";
 import ConfirmationPaiement from "./pages/ConfirmationPaiement";
 import OpenMachine from "./pages/Machine";
 import CreateProject from "./pages/CreateProject.jsx";
-import ProtectedPage from "./components/protectedPage.jsx";
+import ProtectedPage from "./components/protectedPage.jsx"; 
 import "./App.css";
 import Sidebar from "./components/Sidebar/sidebar.jsx";
 
