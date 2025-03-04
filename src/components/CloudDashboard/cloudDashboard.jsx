@@ -1,6 +1,18 @@
 import React from "react";
-import './cloudDashboard.css'
-import { BarChart, Bar, XAxis, YAxis, Tooltip, LineChart, Line, PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
+import "./cloudDashboard.css";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  LineChart,
+  Line,
+  PieChart,
+  Pie,
+  Cell,
+  ResponsiveContainer,
+} from "recharts";
 
 const resourceData = [
   { name: "CPU", used: 70, allocated: 100 },
@@ -48,9 +60,18 @@ const CloudDashboard = () => {
         <h2 className="text-lg font-bold mb-4">Facturation et coûts</h2>
         <ResponsiveContainer width="100%" height={200}>
           <PieChart>
-            <Pie data={costData} dataKey="value" nameKey="name" outerRadius={80} label>
+            <Pie
+              data={costData}
+              dataKey="value"
+              nameKey="name"
+              outerRadius={80}
+              label
+            >
               {costData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                <Cell
+                  key={`cell-${index}`}
+                  fill={COLORS[index % COLORS.length]}
+                />
               ))}
             </Pie>
           </PieChart>

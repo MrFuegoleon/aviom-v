@@ -7,7 +7,11 @@ const CancelSubscriptionButton = ({ refreshUser }) => {
   const navigate = useNavigate();
 
   const handleCancel = async () => {
-    if (window.confirm("Are you sure you want to cancel your subscription? This will remove all packs and deactivate your project.")) {
+    if (
+      window.confirm(
+        "Are you sure you want to cancel your subscription? This will remove all packs and deactivate your project."
+      )
+    ) {
       try {
         const { data } = await api.post("/api/cancel-subscription");
         alert(data.message);
@@ -24,7 +28,7 @@ const CancelSubscriptionButton = ({ refreshUser }) => {
 
   return (
     <Button variant="danger" onClick={handleCancel}>
-    Annuler l'abonnement    
+      Annuler l'abonnement
     </Button>
   );
 };

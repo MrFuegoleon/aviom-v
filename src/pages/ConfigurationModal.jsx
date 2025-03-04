@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const ConfigurationModal = ({ configType, onClose, onSubmit }) => {
   const [formData, setFormData] = useState({
-    vmName: '',
-    operatingSystem: 'ubuntu',
+    vmName: "",
+    operatingSystem: "ubuntu",
     cpuRange: getDefaultCpuRange(configType),
     ramRange: getDefaultRamRange(configType),
     ssdRange: getDefaultSsdRange(configType),
@@ -13,84 +13,119 @@ const ConfigurationModal = ({ configType, onClose, onSubmit }) => {
     ipAddresses: getDefaultIpAddresses(configType),
     backup: true,
     firewall: true,
-    vlan: configType !== 'eco',
-    vpn: configType !== 'eco'
+    vlan: configType !== "eco",
+    vpn: configType !== "eco",
   });
 
   useEffect(() => {
-    document.body.classList.add('modal-open');
+    document.body.classList.add("modal-open");
     return () => {
-      document.body.classList.remove('modal-open');
+      document.body.classList.remove("modal-open");
     };
   }, []);
 
   function getDefaultCpuRange(type) {
-    switch(type) {
-      case 'eco': return { min: 1, max: 2 };
-      case 'duo': return { min: 2, max: 5 };
-      case 'trio': return { min: 3, max: 7 };
-      case 'pro': return { min: 1, max: 16 };
-      default: return { min: 1, max: 8 };
+    switch (type) {
+      case "eco":
+        return { min: 1, max: 2 };
+      case "duo":
+        return { min: 2, max: 5 };
+      case "trio":
+        return { min: 3, max: 7 };
+      case "pro":
+        return { min: 1, max: 16 };
+      default:
+        return { min: 1, max: 8 };
     }
   }
 
   function getDefaultRamRange(type) {
-    switch(type) {
-      case 'eco': return { min: 1, max: 4 };
-      case 'duo': return { min: 2, max: 9 };
-      case 'trio': return { min: 4, max: 11 };
-      case 'pro': return { min: 1, max: 32 };
-      default: return { min: 1, max: 16 };
+    switch (type) {
+      case "eco":
+        return { min: 1, max: 4 };
+      case "duo":
+        return { min: 2, max: 9 };
+      case "trio":
+        return { min: 4, max: 11 };
+      case "pro":
+        return { min: 1, max: 32 };
+      default:
+        return { min: 1, max: 16 };
     }
   }
 
   function getDefaultSsdRange(type) {
-    switch(type) {
-      case 'eco': return { min: 10, max: 50 };
-      case 'duo': return { min: 20, max: 70 };
-      case 'trio': return { min: 50, max: 90 };
-      case 'pro': return { min: 10, max: 500 };
-      default: return { min: 10, max: 200 };
+    switch (type) {
+      case "eco":
+        return { min: 10, max: 50 };
+      case "duo":
+        return { min: 20, max: 70 };
+      case "trio":
+        return { min: 50, max: 90 };
+      case "pro":
+        return { min: 10, max: 500 };
+      default:
+        return { min: 10, max: 200 };
     }
   }
 
   function getDefaultCpu(type) {
-    switch(type) {
-      case 'eco': return 1;
-      case 'duo': return 2;
-      case 'trio': return 3;
-      case 'pro': return 4;
-      default: return 2;
+    switch (type) {
+      case "eco":
+        return 1;
+      case "duo":
+        return 2;
+      case "trio":
+        return 3;
+      case "pro":
+        return 4;
+      default:
+        return 2;
     }
   }
 
   function getDefaultRam(type) {
-    switch(type) {
-      case 'eco': return 2;
-      case 'duo': return 4;
-      case 'trio': return 8;
-      case 'pro': return 16;
-      default: return 4;
+    switch (type) {
+      case "eco":
+        return 2;
+      case "duo":
+        return 4;
+      case "trio":
+        return 8;
+      case "pro":
+        return 16;
+      default:
+        return 4;
     }
   }
 
   function getDefaultSsd(type) {
-    switch(type) {
-      case 'eco': return 10;
-      case 'duo': return 40;
-      case 'trio': return 70;
-      case 'pro': return 100;
-      default: return 50;
+    switch (type) {
+      case "eco":
+        return 10;
+      case "duo":
+        return 40;
+      case "trio":
+        return 70;
+      case "pro":
+        return 100;
+      default:
+        return 50;
     }
   }
 
   function getDefaultIpAddresses(type) {
-    switch(type) {
-      case 'eco': return 1;
-      case 'duo': return 2;
-      case 'trio': return 2;
-      case 'pro': return 4;
-      default: return 1;
+    switch (type) {
+      case "eco":
+        return 1;
+      case "duo":
+        return 2;
+      case "trio":
+        return 2;
+      case "pro":
+        return 4;
+      default:
+        return 1;
     }
   }
 
@@ -98,7 +133,7 @@ const ConfigurationModal = ({ configType, onClose, onSubmit }) => {
     const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: type === "checkbox" ? checked : value,
     });
   };
 
@@ -106,32 +141,42 @@ const ConfigurationModal = ({ configType, onClose, onSubmit }) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: parseFloat(value)
+      [name]: parseFloat(value),
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(formData);
+    onSubmit(formData,formData.vmName,formData.operatingSystem);
   };
 
   const getModalTitle = () => {
-    switch(configType) {
-      case 'eco': return 'Configuration ECO';
-      case 'duo': return 'Configuration DUO';
-      case 'trio': return 'Configuration TRIO';
-      case 'pro': return 'Configuration PRO';
-      default: return 'Configuration';
+    switch (configType) {
+      case "eco":
+        return "Configuration ECO";
+      case "duo":
+        return "Configuration DUO";
+      case "trio":
+        return "Configuration TRIO";
+      case "pro":
+        return "Configuration PRO";
+      default:
+        return "Configuration";
     }
   };
 
   const getModalHeaderColor = () => {
-    switch(configType) {
-      case 'eco': return '#28a745';
-      case 'duo': return '#007bff';
-      case 'trio': return '#fd7e14';
-      case 'pro': return '#6f42c1';
-      default: return '#0275d8';
+    switch (configType) {
+      case "eco":
+        return "#28a745";
+      case "duo":
+        return "#007bff";
+      case "trio":
+        return "#fd7e14";
+      case "pro":
+        return "#6f42c1";
+      default:
+        return "#0275d8";
     }
   };
 
@@ -139,9 +184,14 @@ const ConfigurationModal = ({ configType, onClose, onSubmit }) => {
     <>
       <div className="config-modal-overlay">
         <div className="config-modal">
-          <div className="config-modal-header" style={{ backgroundColor: getModalHeaderColor() }}>
+          <div
+            className="config-modal-header"
+            style={{ backgroundColor: getModalHeaderColor() }}
+          >
             <h3>{getModalTitle()}</h3>
-            <button className="close-button" onClick={onClose}>×</button>
+            <button className="close-button" onClick={onClose}>
+              ×
+            </button>
           </div>
           <div className="config-modal-body">
             <form onSubmit={handleSubmit}>
@@ -175,7 +225,7 @@ const ConfigurationModal = ({ configType, onClose, onSubmit }) => {
 
               <div className="resource-sliders">
                 <h4>Ressources</h4>
-                
+
                 <div className="form-group">
                   <label htmlFor="cpu">CPU ({formData.cpu} vCores)</label>
                   <input
@@ -228,10 +278,12 @@ const ConfigurationModal = ({ configType, onClose, onSubmit }) => {
                   onChange={handleChange}
                 >
                   <option value="1">1 adresse IP</option>
-                  {(configType === 'duo' || configType === 'trio' || configType === 'pro') && (
+                  {(configType === "duo" ||
+                    configType === "trio" ||
+                    configType === "pro") && (
                     <option value="2">2 adresses IP</option>
                   )}
-                  {(configType === 'pro') && (
+                  {configType === "pro" && (
                     <>
                       <option value="3">3 adresses IP</option>
                       <option value="4">4 adresses IP</option>
@@ -263,7 +315,9 @@ const ConfigurationModal = ({ configType, onClose, onSubmit }) => {
                   <label htmlFor="firewall">Pare-feu mutualisé</label>
                 </div>
 
-                {(configType === 'duo' || configType === 'trio' || configType === 'pro') && (
+                {(configType === "duo" ||
+                  configType === "trio" ||
+                  configType === "pro") && (
                   <>
                     <div className="form-group checkbox">
                       <input
@@ -291,7 +345,11 @@ const ConfigurationModal = ({ configType, onClose, onSubmit }) => {
               </div>
 
               <div className="form-actions">
-                <button type="button" className="cancel-button" onClick={onClose}>
+                <button
+                  type="button"
+                  className="cancel-button"
+                  onClick={onClose}
+                >
                   Annuler
                 </button>
                 <button type="submit" className="submit-button">

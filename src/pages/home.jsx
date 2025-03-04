@@ -20,7 +20,10 @@ const Home = () => {
         </div>
         <div className="order-card">
           <h3>Commander un Serveur Infogéré</h3>
-          <p>Une offre serveur dédié baremetal pour répondre aux besoins titanesques.</p>
+          <p>
+            Une offre serveur dédié baremetal pour répondre aux besoins
+            titanesques.
+          </p>
           <button className="info-btn">+ Info</button>
         </div>
       </section>
@@ -39,7 +42,9 @@ const Home = () => {
           <p className="service-domain">votresitewp.com</p>
           <p className="renewal">Renouveler (21/05/2025)</p>
         </div>
-        <p className="other-services">Vous avez <strong>2 autres services</strong> disponibles.</p>
+        <p className="other-services">
+          Vous avez <strong>2 autres services</strong> disponibles.
+        </p>
       </section>
     </div>
   );

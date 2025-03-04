@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaPlus, FaTrash, FaEdit } from "react-icons/fa";
 import DomainEditor from "../components/DomaineEditor/DomaineEdit";
-import './commande.css'
+import "./commande.css";
 
 const DomainManagement = () => {
   const [domains, setDomains] = useState([
@@ -20,7 +20,9 @@ const DomainManagement = () => {
     const name = form.domainName.value.trim();
     const renewal = form.renewal.value;
     if (!name || !renewal) return;
-    const newId = domains.length ? Math.max(...domains.map((d) => d.id)) + 1 : 1;
+    const newId = domains.length
+      ? Math.max(...domains.map((d) => d.id)) + 1
+      : 1;
     const newDomain = { id: newId, name, status: "Actif", renewal };
     setDomains([newDomain, ...domains]);
     form.reset();
@@ -32,7 +34,9 @@ const DomainManagement = () => {
   };
 
   const saveDomainEdits = (editedDomain) => {
-    setDomains(domains.map((d) => (d.id === editedDomain.id ? editedDomain : d)));
+    setDomains(
+      domains.map((d) => (d.id === editedDomain.id ? editedDomain : d))
+    );
     setShowEditModal(false);
     setSelectedDomain(null);
   };
@@ -51,10 +55,14 @@ const DomainManagement = () => {
             <span>Total: {domains.length}</span>
           </div>
           <div className="dm-stat">
-            <span>Actifs: {domains.filter(d => d.status === "Actif").length}</span>
+            <span>
+              Actifs: {domains.filter((d) => d.status === "Actif").length}
+            </span>
           </div>
           <div className="dm-stat">
-            <span>Expirés: {domains.filter(d => d.status === "Expiré").length}</span>
+            <span>
+              Expirés: {domains.filter((d) => d.status === "Expiré").length}
+            </span>
           </div>
         </div>
         <button className="dm-add-btn" onClick={() => setShowAddModal(true)}>
@@ -74,7 +82,9 @@ const DomainManagement = () => {
             <div key={domain.id} className="dm-table-row">
               <div className="dm-col-domain">{domain.name}</div>
               <div className="dm-col-status">
-                <span className={`dm-status-badge ${domain.status.toLowerCase()}`}>
+                <span
+                  className={`dm-status-badge ${domain.status.toLowerCase()}`}
+                >
                   {domain.status}
                 </span>
               </div>
@@ -107,7 +117,7 @@ const DomainManagement = () => {
           <div className="dm-modal-content">
             <div className="dm-modal-header">
               <h2>Ajouter un nouveau domaine</h2>
-              <button 
+              <button
                 className="dm-close-btn"
                 onClick={() => setShowAddModal(false)}
               >
@@ -127,12 +137,7 @@ const DomainManagement = () => {
               </div>
               <div className="dm-form-group">
                 <label htmlFor="renewal">Date de renouvellement</label>
-                <input 
-                  type="date" 
-                  id="renewal" 
-                  name="renewal" 
-                  required 
-                />
+                <input type="date" id="renewal" name="renewal" required />
               </div>
               <div className="dm-form-actions">
                 <button type="submit" className="dm-submit-btn">

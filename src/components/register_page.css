@@ -1,5 +1,5 @@
 /* Register.css */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
 
 .register-container {
   display: flex;
@@ -7,7 +7,7 @@
   align-items: center;
   min-height: 100vh;
   background: linear-gradient(135deg, #34bede, #289bb0);
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   padding: 40px 0;
   width: 100vw;
   overflow-y: auto;
@@ -31,7 +31,8 @@
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
 }
 
-.register-box h2, .register-box h3 {
+.register-box h2,
+.register-box h3 {
   text-align: center;
   color: #333;
   font-weight: 700;
@@ -55,7 +56,9 @@ label {
   color: #555;
 }
 
-input, select, textarea {
+input,
+select,
+textarea {
   width: 100%;
   padding: 12px;
   margin-bottom: 20px;
@@ -66,7 +69,9 @@ input, select, textarea {
   background: #f9f9f9;
 }
 
-input:focus, select:focus, textarea:focus {
+input:focus,
+select:focus,
+textarea:focus {
   border-color: #34bede;
   box-shadow: 0 0 10px rgba(52, 190, 222, 0.6);
   outline: none;

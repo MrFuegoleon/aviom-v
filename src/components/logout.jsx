@@ -1,14 +1,14 @@
-import React from 'react';
-import { Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const LogoutButton = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
     // Remove token (and any other related data) from local storage
-    localStorage.removeItem('token');
-    navigate('/login');
+    localStorage.removeItem("token");
+    navigate("/login");
   };
 
   return (

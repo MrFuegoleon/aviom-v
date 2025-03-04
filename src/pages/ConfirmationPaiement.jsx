@@ -9,7 +9,9 @@ const ConfirmationPaiement = () => {
     <div>
       <h1>Paiement réussi ! ✅</h1>
       <p>Votre paiement GoCardless a été initié avec succès.</p>
-      <p><strong>ID du paiement :</strong> {paymentId}</p>
+      <p>
+        <strong>ID du paiement :</strong> {paymentId}
+      </p>
       <a href="/">Retour à l'accueil</a>
     </div>
   );

@@ -14,7 +14,7 @@ const UserInfo = () => {
     adresse: "15 rue emile zola",
     codePostal: "10000",
     ville: "Troyes",
-    pays: "FRANCE"
+    pays: "FRANCE",
   });
 
   const handleChange = (e) => {
@@ -31,17 +31,19 @@ const UserInfo = () => {
       <div className="user-info-header">
         <h1>Informations Personnelles</h1>
         <p>
-          Cet espace permet de consulter et modifier vos informations personnelles, 
-          mot de passe et préférences.
+          Cet espace permet de consulter et modifier vos informations
+          personnelles, mot de passe et préférences.
         </p>
       </div>
 
       <div className="edit-toggle">
-        <button 
-          className={`edit-button ${isEditing ? 'editing' : ''}`}
+        <button
+          className={`edit-button ${isEditing ? "editing" : ""}`}
           onClick={() => setIsEditing(!isEditing)}
         >
-          {isEditing ? 'Annuler les modifications' : 'Modifier mes informations'}
+          {isEditing
+            ? "Annuler les modifications"
+            : "Modifier mes informations"}
         </button>
       </div>
 
@@ -49,7 +51,7 @@ const UserInfo = () => {
         <div className="info-grid">
           {Object.entries(userInfo).map(([key, value]) => (
             <div key={key} className="info-row">
-              <label>{key.replace(/([A-Z])/g, ' $1').trim()}</label>
+              <label>{key.replace(/([A-Z])/g, " $1").trim()}</label>
               <div className="info-content">
                 {isEditing ? (
                   <input
@@ -158,8 +160,8 @@ const UserInfo = () => {
         .info-card {
           background: white;
           border-radius: 12px;
-          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
-                      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+            0 2px 4px -1px rgba(0, 0, 0, 0.06);
           padding: 2rem;
         }
 

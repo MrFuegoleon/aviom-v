@@ -7,7 +7,7 @@ import {
   FaCloud,
   FaServer,
   FaGlobe,
-  FaLifeRing
+  FaLifeRing,
 } from "react-icons/fa";
 import "./supportPage.css";
 
@@ -16,9 +16,9 @@ const SupportPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [tickets, setTickets] = useState([
     { id: 1, title: "Problème de connexion VM", status: "En cours" },
-    { id: 2, title: "Migration de domaine", status: "Résolu" }
+    { id: 2, title: "Migration de domaine", status: "Résolu" },
   ]);
-  
+
   // États pour le formulaire modal
   const [showForm, setShowForm] = useState(false);
   const [newTicketTitle, setNewTicketTitle] = useState("");
@@ -33,7 +33,7 @@ const SupportPage = () => {
       id: tickets.length + 1,
       title: newTicketTitle,
       status: "En cours",
-      description: newTicketDescription
+      description: newTicketDescription,
     };
 
     setTickets([newTicket, ...tickets]);
@@ -52,7 +52,9 @@ const SupportPage = () => {
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
         <div className="nav-left">
-          <h2 className="logo" style={{color:"white"}}>Support Technique</h2>
+          <h2 className="logo" style={{ color: "white" }}>
+            Support Technique
+          </h2>
           <div className="nav-items">
             <NavItem
               icon={<FaFileAlt />}
@@ -218,21 +220,17 @@ const NavItem = ({ icon, text, active, onClick }) => (
 
 // Composant TicketItem
 const TicketItem = ({ id, title, status, description }) => {
-  const statusClass = status === "Résolu" ? "status-resolved" : "status-pending";
+  const statusClass =
+    status === "Résolu" ? "status-resolved" : "status-pending";
   return (
-    <motion.div
-      className="ticket-item"
-      whileHover={{ scale: 1.02 }}
-    >
+    <motion.div className="ticket-item" whileHover={{ scale: 1.02 }}>
       <div className="ticket-info">
         <h4>{title}</h4>
         {description && <small>{description}</small>}
         <br />
         <small>Ticket #{id}</small>
       </div>
-      <div className={`ticket-status ${statusClass}`}>
-        {status}
-      </div>
+      <div className={`ticket-status ${statusClass}`}>{status}</div>
     </motion.div>
   );
 };

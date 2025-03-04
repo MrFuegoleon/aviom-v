@@ -9,7 +9,7 @@ const useVmStatusSse = (vmId) => {
     // Construct the SSE URL (here token is passed as a query param)
     const sseUrl = `http://localhost:5000/api/sse/vm-status?vmId=${vmId}&token=${token}`;
     console.log("Connecting to SSE at:", sseUrl);
-    
+
     const eventSource = new EventSource(sseUrl);
 
     eventSource.onopen = () => {

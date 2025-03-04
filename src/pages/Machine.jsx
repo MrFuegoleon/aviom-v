@@ -1,34 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Table, Modal, Form, Alert, Spinner } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import api from '../axiosConfig';
+import React, { useState, useEffect } from "react";
+import { Button, Table, Modal, Form, Alert, Spinner } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import api from "../axiosConfig";
 import { useNavigate } from "react-router-dom";
-import VmRow from '../components/VmRow'
-import Manage from '../components/doubleButton';
-const API_BASE = '/api/openstack';
+import VmRow from "../components/VmRow";
+import Manage from "../components/doubleButton";
+const API_BASE = "/api/openstack";
 
 function OpenMachine() {
   const [vms, setVms] = useState([]);
   const [flavors, setFlavors] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [showCreate, setShowCreate] = useState(false);
-  const [vmName, setVmName] = useState('');
+  const [vmName, setVmName] = useState("");
   const [selectedVm, setSelectedVm] = useState(null);
-  const [selectedFlavor, setSelectedFlavor] = useState('');
+  const [selectedFlavor, setSelectedFlavor] = useState("");
   const [activeActions, setActiveActions] = useState({});
-  const [userPacks, setUserPacks] = useState({ eco: 0, duo: 0, trio: 0, flex: 0 });
+  const [userPacks, setUserPacks] = useState({
+    eco: 0,
+    duo: 0,
+    trio: 0,
+    flex: 0,
+  });
   const [hasPack, setHasPack] = useState(false);
   const navigate = useNavigate();
 
-
   useEffect(() => {
     // Fetch user profile data from the backend.
-    api.get("/api/machine")
-      .then(response => {
+    api
+      .get("/api/machine")
+      .then((response) => {
         const { eco, duo, trio, flex } = response.data;
         console.log("Response from /api/machine:", response.data);
-  
+
         setUserPacks({ eco, duo, trio, flex });
         // Determine if the user has any pack
         if (eco === 1 || duo === 1 || trio === 1 || flex === 1) {
@@ -46,7 +51,7 @@ function OpenMachine() {
           }
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error fetching user profile:", error);
       });
   }, []);
@@ -55,8 +60,6 @@ function OpenMachine() {
     fetchVms();
     fetchFlavors();
   }, []);
-  
-  
 
   const fetchVms = async () => {
     try {
@@ -64,9 +67,9 @@ function OpenMachine() {
       const { data } = await api.get(`${API_BASE}/list-vms`);
       setVms(data.data);
       console.log(data.data);
-      setError('');
+      setError("");
     } catch (err) {
-      setError(err.response?.data?.message || 'Error loading VMs');
+      setError(err.response?.data?.message || "Error loading VMs");
     } finally {
       setLoading(false);
     }
@@ -77,7 +80,7 @@ function OpenMachine() {
       const { data } = await api.get(`${API_BASE}/flavors`);
       setFlavors(data.data);
     } catch (err) {
-      setError(err.response?.data?.message || 'Error loading flavors');
+      setError(err.response?.data?.message || "Error loading flavors");
     }
   };
 
@@ -89,16 +92,16 @@ function OpenMachine() {
 
     try {
       setLoading(true);
-      await api.post(`${API_BASE}/create-vm`, { 
-        flavorRef: selectedFlavor, 
-        name: vmName || "VM-User" 
+      await api.post(`${API_BASE}/create-vm`, {
+        flavorRef: selectedFlavor,
+        name: vmName || "VM-User",
       });
       await fetchVms();
       setShowCreate(false);
-      setVmName('');
-      setSelectedFlavor('');
+      setVmName("");
+      setSelectedFlavor("");
     } catch (err) {
-      setError(err.response?.data?.message || 'Creation error');
+      setError(err.response?.data?.message || "Creation error");
     } finally {
       setLoading(false);
     }
@@ -107,16 +110,16 @@ function OpenMachine() {
   const handleVmAction = async (action, vmId, data) => {
     try {
       // Mark action as active for this VM so that the spinner shows.
-      setActiveActions(prev => ({ ...prev, [vmId]: true }));
-  
+      setActiveActions((prev) => ({ ...prev, [vmId]: true }));
+
       // Get the initial status from your local state (fetched via fetchVms)
-      const initialVm = vms.find(vm => vm.id === vmId);
+      const initialVm = vms.find((vm) => vm.id === vmId);
       const initialStatus = initialVm ? initialVm.status : null;
-  
+
       // Trigger the action (start, stop, reboot, etc.)
-      const endpoint = action === 'delete' ? api.delete : api.post;
+      const endpoint = action === "delete" ? api.delete : api.post;
       await endpoint(`${API_BASE}/${action}-vm/${vmId}`, data);
-  
+
       // Start polling for status change every 3 seconds.
       let attempts = 0;
       const maxAttempts = 20; // For example, wait up to 60 seconds.
@@ -127,16 +130,18 @@ function OpenMachine() {
           // Adjust this endpoint if necessary.
           const { data: vmData } = await api.get(`${API_BASE}/servers/${vmId}`);
           // If your API returns the VM details inside "server":
-          const updatedStatus = vmData.server ? vmData.server.status : vmData.status;
-          
+          const updatedStatus = vmData.server
+            ? vmData.server.status
+            : vmData.status;
+
           // If the status has changed from the initial status, clear the spinner.
           if (updatedStatus && updatedStatus !== initialStatus) {
             clearInterval(pollInterval);
-            setActiveActions(prev => ({ ...prev, [vmId]: false }));
+            setActiveActions((prev) => ({ ...prev, [vmId]: false }));
           } else if (attempts >= maxAttempts) {
             // If max attempts reached, clear the spinner to avoid an infinite spinner.
             clearInterval(pollInterval);
-            setActiveActions(prev => ({ ...prev, [vmId]: false }));
+            setActiveActions((prev) => ({ ...prev, [vmId]: false }));
           }
         } catch (pollErr) {
           console.error("Polling error:", pollErr);
@@ -144,21 +149,27 @@ function OpenMachine() {
       }, 3000); // Poll every 3 seconds.
     } catch (err) {
       setError(err.response?.data?.message || `Error during ${action}`);
-      setActiveActions(prev => ({ ...prev, [vmId]: false }));
+      setActiveActions((prev) => ({ ...prev, [vmId]: false }));
     }
   };
-  
-
 
   return (
     <div className="container mt-4">
       <h1 className="mb-4">GERER VOS MACHINES</h1>
 
-      {error && <Alert variant="danger" onClose={() => setError('')} dismissible>{error}</Alert>}
+      {error && (
+        <Alert variant="danger" onClose={() => setError("")} dismissible>
+          {error}
+        </Alert>
+      )}
 
       <div className="mb-3">
-        <Button variant="primary" onClick={() => setShowCreate(true)} disabled={loading}>
-          {loading ? <Spinner size="sm" animation="border" /> : 'Create VM'}
+        <Button
+          variant="primary"
+          onClick={() => setShowCreate(true)}
+          disabled={loading}
+        >
+          {loading ? <Spinner size="sm" animation="border" /> : "Create VM"}
         </Button>
       </div>
 
@@ -177,8 +188,8 @@ function OpenMachine() {
             </tr>
           </thead>
           <tbody>
-            {vms.map(vm => (
-              <VmRow 
+            {vms.map((vm) => (
+              <VmRow
                 key={vm.id}
                 vm={vm}
                 handleVmAction={handleVmAction}
@@ -198,8 +209,8 @@ function OpenMachine() {
           <Form>
             <Form.Group className="mb-3">
               <Form.Label>VM Name</Form.Label>
-              <Form.Control 
-                type="text" 
+              <Form.Control
+                type="text"
                 value={vmName}
                 onChange={(e) => setVmName(e.target.value)}
                 placeholder="Enter a VM name"
@@ -207,14 +218,15 @@ function OpenMachine() {
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Select a Flavor</Form.Label>
-              <Form.Select 
+              <Form.Select
                 value={selectedFlavor}
                 onChange={(e) => setSelectedFlavor(e.target.value)}
               >
                 <option value="">Select a flavor</option>
-                {flavors.map(flavor => (
+                {flavors.map((flavor) => (
                   <option key={flavor.id} value={flavor.id}>
-                    {flavor.name} - {flavor.vcpus} vCPUs, {flavor.ram} MB RAM, {flavor.disk} GB Disk
+                    {flavor.name} - {flavor.vcpus} vCPUs, {flavor.ram} MB RAM,{" "}
+                    {flavor.disk} GB Disk
                   </option>
                 ))}
               </Form.Select>
@@ -225,7 +237,11 @@ function OpenMachine() {
           <Button variant="secondary" onClick={() => setShowCreate(false)}>
             Cancel
           </Button>
-          <Button variant="primary" onClick={handleCreateVm} disabled={!selectedFlavor}>
+          <Button
+            variant="primary"
+            onClick={handleCreateVm}
+            disabled={!selectedFlavor}
+          >
             Create
           </Button>
         </Modal.Footer>

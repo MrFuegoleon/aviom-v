@@ -1,8 +1,8 @@
 // src/Login.jsx
 import React, { useState } from "react";
-import api from "../axiosConfig"; 
+import api from "../axiosConfig";
 import { useNavigate } from "react-router-dom";
-import './LoginForm.css'
+import "./LoginForm.css";
 import RegisterPage from "./RegisterForm";
 function LoginForm() {
   const [username, setUsername] = useState("");
@@ -20,7 +20,7 @@ function LoginForm() {
       });
       // Token's storage
       localStorage.setItem("token", response.data.token);
-      console.log(response.data.token)
+      console.log(response.data.token);
       // Redirect to dashboard
       navigate("/");
     } catch (err) {
@@ -29,37 +29,39 @@ function LoginForm() {
   };
 
   return (
-
     <div className="auth-container">
-          {showRegister ? (
-            <RegisterPage />
-          ) : (
-            <div className="auth-box">
-              <h2>Connexion</h2>
-              <form onSubmit={handleSubmit}>
-                <label>Identifiant :</label>
-                <input
-                  type="text"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  placeholder="Votre identifiant"
-                />
-                <label>Mot de passe :</label>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Mot de passe "
-                />
-                {error && <p className="error">{error}</p>}
-                <button type="submit">Se connecter</button>
-              </form>
-              <p className="register-link">
-                Pas encore de compte ? <a href="#" onClick={() => setShowRegister(true)}>Créer un compte</a>
-              </p>
-            </div>
-          )}
+      {showRegister ? (
+        <RegisterPage />
+      ) : (
+        <div className="auth-box">
+          <h2>Connexion</h2>
+          <form onSubmit={handleSubmit}>
+            <label>Identifiant :</label>
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Votre identifiant"
+            />
+            <label>Mot de passe :</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Mot de passe "
+            />
+            {error && <p className="error">{error}</p>}
+            <button type="submit">Se connecter</button>
+          </form>
+          <p className="register-link">
+            Pas encore de compte ?{" "}
+            <a href="#" onClick={() => setShowRegister(true)}>
+              Créer un compte
+            </a>
+          </p>
         </div>
-      );
-    };
+      )}
+    </div>
+  );
+}
 export default LoginForm;

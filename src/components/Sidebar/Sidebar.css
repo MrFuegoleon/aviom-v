@@ -1,14 +1,14 @@
-  /* Sidebar */
-  .sidebar {
-    width: 250px; /* Largeur de la sidebar */
-    background-color: #2c3e50; /* Couleur de fond */
-    color: #ecf0f1; /* Couleur du texte */
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Ombre */
-    position: fixed; /* Fixer la sidebar */
-    height: 100vh; /* Hauteur totale de la vue */
-    transition: width 0.3s ease; /* Animation pour la largeur */
-  }
+/* Sidebar */
+.sidebar {
+  width: 250px; /* Largeur de la sidebar */
+  background-color: #2c3e50; /* Couleur de fond */
+  color: #ecf0f1; /* Couleur du texte */
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Ombre */
+  position: fixed; /* Fixer la sidebar */
+  height: 100vh; /* Hauteur totale de la vue */
+  transition: width 0.3s ease; /* Animation pour la largeur */
+}
 
 /* Réduire la largeur de la sidebar sur les petits écrans */
 @media (max-width: 768px) {
@@ -94,7 +94,7 @@
 }
 
 .sidebar .nav-menu li a::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -111,13 +111,11 @@
   transform-origin: left;
 }
 
-
 /* Conteneur principal */
 .app-container {
   display: flex;
   min-height: 100vh;
 }
-
 
 /* Contenu principal */
 .main-content {

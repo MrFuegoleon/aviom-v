@@ -1,5 +1,5 @@
 /* Auth.css */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
 
 .auth-container {
   display: flex;
@@ -8,7 +8,7 @@
   height: 100vh;
   width: 100vw;
   background: linear-gradient(135deg, #34bede, #289bb0);
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .auth-box {
@@ -119,7 +119,8 @@
 }
 
 @keyframes floatingLight {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(0, 0);
   }
   50% {
